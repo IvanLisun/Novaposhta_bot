@@ -68,7 +68,7 @@ def book_time(message):
 def ask_time(message):
     date = message.text.strip()
     if not validate_date(date):
-        msg = bot.send_message(message.chat.id, "❗ Невірний формат дати. Спробуйте ще раз (ДД.ММ.РРРР):")
+        msg = bot.send_message(message.chat.id, "❗️ Невірний формат дати. Спробуйте ще раз (ДД.ММ.РРРР):")
         bot.register_next_step_handler(msg, ask_time)
         return
     message.chat.booking_date = date
@@ -78,7 +78,7 @@ def ask_time(message):
 def confirm_booking(message, date):
     time = message.text.strip()
     if not validate_time(time):
-        msg = bot.send_message(message.chat.id, "❗ Невірний формат часу. Спробуйте ще раз (ГГ:ХХ):")
+        msg = bot.send_message(message.chat.id, "❗️ Невірний формат часу. Спробуйте ще раз (ГГ:ХХ):")
         bot.register_next_step_handler(msg, confirm_booking, date)
         return
     bot.send_message(
@@ -89,7 +89,6 @@ def confirm_booking(message, date):
 @bot.message_handler(func=lambda message: message.text == "📅 Забронювати час")
 def book_time_button(message):
     book_time(message)
-
 # === Команда /help ===
 @bot.message_handler(commands=['help'])
 def help_command(message):
@@ -136,7 +135,7 @@ def reply_hello(message):
 # === Знайти відділення ===
 @bot.message_handler(func=lambda message: message.text == "Знайти відділення 🏤")
 def ask_city(message):
-    msg = bot.send_message(message.chat.id, "🏙️ Введіть назву міста українською:")
+    msg = bot.send_message(message.chat.id, "🏙 Введіть назву міста українською:")
     bot.register_next_step_handler(msg, find_branch)
 
 def find_branch(message):
@@ -197,7 +196,6 @@ def service_detail(message):
         "📦 Зберігання посилок": "📦 Безкоштовне зберігання — 5 днів. Потім — за тарифами.",
         "🔁 Переадресація": "🔁 Змініть адресу доставки через додаток або за допомогою оператора.",
     }
-
     if message.text == "⬅️ Назад":
         bot.send_message(
             message.chat.id,
